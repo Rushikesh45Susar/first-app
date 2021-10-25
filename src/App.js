@@ -1,23 +1,33 @@
-import './App.css';
-import  footer from './components/footer.jsx';
-import Homepage from './components/Homepage.jsx';
-import navbar from './components/Navbar.jsx';
-import {Route , Switch} from 'react-router-dom'
-import About from './components/about';
-import Login from './components/Signin';
+import React from "react";
+import "./App.css";
+import Row from "./Row";
+import requests from "./requests";
+import Banner from "./Banner";
+import Nav from "./Nav";
+import footer from "./footer";
 
 function App() {
   return (
     <>
-      {navbar}
-      <Switch>
-        <Route exact path="/" component={Homepage} />
-        <Route path="/about" component={About} />
-        <Route path="/signin" component={Login} />
-      </Switch>
+      <div className="app">
+        <Nav />
+        <Banner />
+        <Row
+          isLargeRow
+          title="Netflix Originals"
+          fetchUrl={requests.fetchNetflixOriginals}
+        />
+        <Row title="Trending now" fetchUrl={requests.fetchTrending} />
+        <Row title="Top Rated" fetchUrl={requests.fetchTrending} />
+        <Row title="Action Movies" fetchUrl={requests.fetchActionMovies} />
+        <Row title="Comedy Movies" fetchUrl={requests.fetchComedyMovies} />
+        <Row title="Horror Movies" fetchUrl={requests.fetchHorrorMovies} />
+        <Row title="Romance Movies" fetchUrl={requests.fetchRomanceMovies} />
+        <Row title="Documentaries" fetchUrl={requests.fetchDocumentaries} />
+      </div>
       {footer}
     </>
-  );      
+  );
 }
 
 export default App;
